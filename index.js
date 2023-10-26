@@ -25,7 +25,11 @@ mongoose
 
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://omanaakfa.netlify.app'],
+    origin: [
+      'http://localhost:3000',
+      'https://omanaakfa.netlify.app',
+      'https://omanaakfa.vercel.app/',
+    ],
   })
 )
 app.use(cookieParser())
