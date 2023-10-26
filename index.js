@@ -28,7 +28,7 @@ app.use(
     origin: [
       'http://localhost:3000',
       'https://omanaakfa.netlify.app',
-      'https://omanaakfa.vercel.app/',
+      'https://omanaakfa.vercel.app',
     ],
   })
 )
