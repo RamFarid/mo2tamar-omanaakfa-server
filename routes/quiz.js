@@ -31,9 +31,12 @@ quizRouter.get('/:id/target', async (req, res) => {
 
 quizRouter.put('/:id/active', async (req, res) => {
   const { id } = req.params
+  const { currentValue } = req.body
   try {
     await Quiz.updateMany({ active: true }, { $set: { active: false } })
-    await Quiz.updateOne({ _id: id }, { $set: { active: true } })
+    console.log(!currentValue)
+    console.log(currentValue)
+    await Quiz.updateOne({ _id: id }, { $set: { active: !currentValue } })
     res.status(200).json(responseMessage('Success', true))
   } catch (error) {
     res.json(responseMessage(error.message, false))
@@ -43,9 +46,13 @@ quizRouter.put('/:id/active', async (req, res) => {
 quizRouter.get('/active', async (_req, res) => {
   try {
     const quizzes = await Quiz.findOne({ active: true })
-    res
-      .status(200)
-      .json(responseMessage('Seccess.', true, { data: quizzes.toObject() }))
+    console.log(quizzes?.toObject())
+    res.status(200).json(
+      responseMessage('Seccess.', true, {
+        data: quizzes?.toObject(),
+        code: quizzes?.toObject() ? undefined : 'NO_ACTIVE_QUIZ',
+      })
+    )
   } catch (error) {
     res
       .status(200)

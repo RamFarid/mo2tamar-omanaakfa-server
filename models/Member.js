@@ -18,7 +18,6 @@ const MemberSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'quizzes',
-        unique: true,
       },
     ],
   },
